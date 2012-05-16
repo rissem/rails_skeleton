@@ -9,18 +9,7 @@ class DefaultController < ApplicationController
     end
   end
 
-  def network
-    @data = singly_call('linkedin', 'connections')
-  end
-
 private
-
-  def singly_call(service, command)
-    HTTParty.get(
-      [SINGLY_API_BASE, 'services', service, command].join('/'),
-      :query => {:access_token => access_token}
-    ).parsed_response
- end
 
   def access_token
     session[:access_token]

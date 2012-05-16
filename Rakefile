@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Singlyhackathon::Application.load_tasks
+SinglyRailsSkeleton::Application.load_tasks

@@ -4,11 +4,10 @@
     Nice to see you again!
   - else
     Please connect a service
-- if @profiles
+- if session[:access_token]
   %p
-    Your Singly ID is
-    = @profiles["id"]
-    \.
+    Your access token is
+    %input{:type => :text, :value => session[:access_token], :readonly => :readonly}
     %a(href="/logout") Log out
 %ul
   - %w[facebook linkedin].each do |service|

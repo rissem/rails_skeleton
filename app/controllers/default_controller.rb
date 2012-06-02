@@ -9,6 +9,13 @@ class DefaultController < ApplicationController
     end
   end
 
+  def facebook
+    puts params[:api_method]
+    puts params
+    results = HTTParty.get("#{SINGLY_API_BASE}/v0/services/facebook/#{params[:api_method]}", :query => {:access_token => access_token}).parsed_response
+    render :json => results
+  end
+
 private
 
   def access_token

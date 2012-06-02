@@ -4,5 +4,6 @@ SinglyRailsSkeleton::Application.routes.draw do
   match "logout"                 => "auth#logout"
   match "facebook/:api_method" => "default#facebook"
   match "twitter/:api_method" => "default#twitter"
+  match "linkedin/:api_method" => "default#linkedin"
   root :to                       => "default#home"
 end

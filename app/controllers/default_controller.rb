@@ -19,6 +19,11 @@ class DefaultController < ApplicationController
     render :json => results    
   end
 
+  def linkedin
+    results = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/#{params[:api_method]}", :query => {:access_token => access_token}).parsed_response
+    render :json => results    
+  end  
+
 private
 
   def access_token

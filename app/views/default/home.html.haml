@@ -10,7 +10,7 @@
     %input{:type => :text, :value => session[:access_token], :readonly => :readonly}
     %a(href="/logout") Log out
 %ul
-  - %w[facebook twitter].each do |service|
+  - %w[facebook twitter linkedin].each do |service|
     %li
       = service.capitalize
       - if @profiles && @profiles[service]

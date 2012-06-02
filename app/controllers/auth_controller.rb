@@ -6,6 +6,10 @@ class AuthController < ApplicationController
 
   def callback
     auth = request.env["omniauth.auth"]
+    if request.user_agent =~ /Mobile|webOS/
+      render :json => {:access_token => auth.credentials.token}
+      return
+    end
     session[:access_token] = auth.credentials.token
     redirect_to "/"
   end

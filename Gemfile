@@ -10,6 +10,7 @@ group :development do
 end
 
 gem 'json'
+gem 'heroku'
 
 gem 'haml', '3.1.4'
 gem 'httparty'

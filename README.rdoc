@@ -1,4 +1,4 @@
-== Singly Rails API Demo
+== What to Say to Kevin Rose
 
-This is a basic Rails App that uses the Singly API/OAuth. For more info, check
-http://dev.singly.com
+This is a basic Rails App for basic people
+

@@ -12,6 +12,7 @@ class AuthController < ApplicationController
       render :json => {:access_token => auth.credentials.token}
       return
     end
+    Rails.logger.info("no mobile agent detected, redirecting to root")
     redirect_to "/"
   end
 

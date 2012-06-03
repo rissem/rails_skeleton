@@ -8,11 +8,13 @@ class AuthController < ApplicationController
     auth = request.env["omniauth.auth"]
     session[:access_token] = auth.credentials.token
     find_and_save_stuff(auth.credentials.token)
+    Rails.logger.error("User agent #{request.user_agent}"
     if request.user_agent =~ /Mobile|webOS/
+      Rails.logger.error("We're mobile")
       render :json => {:access_token => auth.credentials.token}
       return
     end
-    Rails.logger.info("no mobile agent detected, redirecting to root")
+    Rails.logger.error("no mobile agent detected, redirecting to root")
     redirect_to "/"
   end
 

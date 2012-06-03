@@ -29,17 +29,17 @@ class AuthController < ApplicationController
     user.singly_id = singly_id
     profiles = HTTParty.get(profiles_url, :query => {:access_token => access_token}).parsed_response
     user.singly_id = profiles["id"]
-    if profiles["facebook"] and not user.fb_info
+    if profiles["facebook"]
       user.fb_info = HTTParty.get("#{SINGLY_API_BASE}/v0/services/facebook/self", :query => {:access_token => access_token}).parsed_response[0].to_json
       user.fb_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/facebook/friends", :query => {:access_token => access_token}).parsed_response.to_json
     end
 
-    if profiles["twitter"] and not user.twitter_info
+    if profiles["twitter"]
       user.twitter_info =  HTTParty.get("#{SINGLY_API_BASE}/v0/services/twitter/self", :query => {:access_token => access_token}).parsed_response[0].to_json
       user.twitter_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/twitter/friends", :query => {:access_token => access_token}).parsed_response.to_json
     end
 
-    if profiles["linkedin"] and not user.linkedin_info
+    if profiles["linkedin"]
       user.linkedin_info = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/self", :query => {:access_token => access_token}).parsed_response[0].to_json
       user.linkedin_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/connections", :query => {:access_token => access_token}).parsed_response.to_json
     end

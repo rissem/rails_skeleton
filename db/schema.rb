@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603164914) do
+ActiveRecord::Schema.define(:version => 20120603173845) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20120603164914) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "access_token"
-    t.string   "name"
+    t.text     "access_token"
+    t.text     "name"
     t.text     "fb_info"
     t.text     "fb_contacts"
     t.text     "linkedin_info"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603153832) do
+ActiveRecord::Schema.define(:version => 20120603160109) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(:version => 20120603153832) do
   create_table "users", :force => true do |t|
     t.string   "access_token"
     t.string   "name"
-    t.string   "fb_info"
-    t.string   "fb_contacts"
-    t.string   "linkedin_info"
-    t.string   "linkedin_contacts"
-    t.string   "twitter_info"
-    t.string   "twitter_contacts"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.text     "fb_info",           :limit => 255
+    t.text     "fb_contacts",       :limit => 255
+    t.text     "linkedin_info",     :limit => 255
+    t.text     "linkedin_contacts", :limit => 255
+    t.text     "twitter_info",      :limit => 255
+    t.text     "twitter_contacts",  :limit => 255
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end

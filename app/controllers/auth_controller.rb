@@ -6,8 +6,8 @@ class AuthController < ApplicationController
 
   def callback
     auth = request.env["omniauth.auth"]
+    session[:access_token] = auth.credentials.token
     if request.user_agent =~ /Mobile|webOS/
-      session[:access_token] = auth.credentials.token
       render :json => {:access_token => auth.credentials.token}
       return
     end

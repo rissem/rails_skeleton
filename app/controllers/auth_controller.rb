@@ -35,7 +35,7 @@ class AuthController < ApplicationController
 
     if profiles["linkedin"] and not user.linkedin_info
       user.linkedin_info = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/self", :query => {:access_token => access_token}).parsed_response[0].to_json
-      user.linkedin_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/connectins", :query => {:access_token => access_token}).parsed_response.to_json
+      user.linkedin_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/linkedin/connections", :query => {:access_token => access_token}).parsed_response.to_json
     end
     user.save!
   end

@@ -21,11 +21,14 @@ class AuthController < ApplicationController
   def find_and_save_stuff(access_token)
     #only do this for available services
     #get profiles, find user by access token
-    
-    user = User.where(:access_token => access_token).first
+    profiles = HTTParty.get(profiles_url, :query => {:access_token => access_token}).parsed_response
+    singly_id = profiles["id"]
+    user = User.where(:singly_id => singly_id).first
     user = User.new unless user
     user.access_token = access_token
+    user.singly_id = singly_id
     profiles = HTTParty.get(profiles_url, :query => {:access_token => access_token}).parsed_response
+    user.singly_id = profiles["id"]
     if profiles["facebook"] and not user.fb_info
       user.fb_info = HTTParty.get("#{SINGLY_API_BASE}/v0/services/facebook/self", :query => {:access_token => access_token}).parsed_response[0].to_json
       user.fb_contacts = HTTParty.get("#{SINGLY_API_BASE}/v0/services/facebook/friends", :query => {:access_token => access_token}).parsed_response.to_json

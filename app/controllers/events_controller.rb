@@ -15,6 +15,7 @@ class EventsController < ApplicationController
         score += 5
         fb_info = JSON.parse(user.fb_info)
         person[:name] = fb_info["data"]["name"]
+        person[:picture] = "http://graph.facebook.com/#{fb_info['data']['id']}/picture"
       end
       if user.linkedin_info
         score += 5
@@ -30,6 +31,7 @@ class EventsController < ApplicationController
         person[:name] = twitter_info['data']['name']
       end
       person["score"] = score
+      person["token"] = user.access_token
       people << person
     end
     render :json => people
